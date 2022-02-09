@@ -38,3 +38,26 @@ def to_usd(my_price):
 # TODO: write some Python code here to produce the desired output
 
 print(products)
+
+
+
+while True:
+
+#ASK FOR USER INPUT
+    product_id = input("Please input a product identifier or type 'DONE': ")
+
+    if product_id == "DONE":
+        break
+
+    matching_products = []
+
+    for x in products:
+        if str(x["id"]) == product_id:
+            matching_products.append(x)
+
+    matching_product = matching_products[0]
+    print(matching_product["name"], matching_product["price"])
+
+
+
+# LOOK UP CORRESPONDING PRODUCTS

@@ -34,11 +34,12 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
-
+print(products)
 # TODO: write some Python code here to produce the desired output
 
 #Grocery Store Name Customization
 
+from math import prod
 import os
 import datetime
 
@@ -56,6 +57,11 @@ while True:
     product_id = input("Please input a product identifier or type 'DONE': ")
     if product_id == "DONE":
         break
+
+#validates input to ensure user enters an existing id from the list of products
+    if not any(str(x['id']) == str(product_id) for x in products):
+        print("Product not scanned. Incorrect product identifier entered. Please try again.")
+        continue
     else:
         selected_ids.append(product_id)
 

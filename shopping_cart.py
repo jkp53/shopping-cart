@@ -40,6 +40,7 @@ def to_usd(my_price):
 #Grocery Store Name Customization
 
 import os
+import datetime
 
 store_name = os.getenv("STORE_NAME", default = "DELUCCHI'S MARKET")
 store_url = os.getenv("STORE_URL", default = "www.delucchismarket.com")
@@ -59,23 +60,23 @@ while True:
 
 #DISPLAY OUTPUT
 
-from datetime import datetime
-
 if __name__ == "__main__":
 
     print("---------------------------------")
     print(store_name)
     print(store_url)
     print("---------------------------------")
-    print("CHECKOUT AT:", datetime.now())
+    now = datetime.datetime.now()
+    print("CHECKOUT AT:", now.strftime("%Y-%m-%d %I:%M %p"))
+    print("---------------------------------")
+    print("SELECTED PRODUCTS:")
 
     for selected_id in selected_ids:
         matching_products = [x for x in products if str(x["id"]) == str(selected_id)]
         matching_product = matching_products[0]
-        print(matching_product["name"], matching_product["price"])
+        print(" ...", matching_product["name"], ("(" + str(to_usd(matching_product["price"])) + ")"))
         running_total = running_total + matching_product["price"]
 
-
-
-    print("Total: " + str(to_usd(running_total)))
+    print("---------------------------------")
+    print("SUBTOTAL: " + str(to_usd(running_total)))
     print(selected_ids)

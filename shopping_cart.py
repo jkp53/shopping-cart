@@ -37,27 +37,45 @@ def to_usd(my_price):
 
 # TODO: write some Python code here to produce the desired output
 
-print(products)
+#Grocery Store Name Customization
+
+import os
+
+store_name = os.getenv("STORE_NAME", default = "DELUCCHI'S MARKET")
+store_url = os.getenv("STORE_URL", default = "www.delucchismarket.com")
 
 
-
-while True:
+running_total = 0
+selected_ids = [] #blank list to store the selected ids in
+matching_products = [] #blank list to store the information of any matching product that had been selected
 
 #ASK FOR USER INPUT
+while True:
     product_id = input("Please input a product identifier or type 'DONE': ")
-
     if product_id == "DONE":
         break
+    else:
+        selected_ids.append(product_id)
 
-    matching_products = []
+#DISPLAY OUTPUT
 
-    for x in products:
-        if str(x["id"]) == product_id:
-            matching_products.append(x)
+from datetime import datetime
 
-    matching_product = matching_products[0]
-    print(matching_product["name"], matching_product["price"])
+if __name__ == "__main__":
+
+    print("---------------------------------")
+    print(store_name)
+    print(store_url)
+    print("---------------------------------")
+    print("CHECKOUT AT:", datetime.now())
+
+    for selected_id in selected_ids:
+        matching_products = [x for x in products if str(x["id"]) == str(selected_id)]
+        matching_product = matching_products[0]
+        print(matching_product["name"], matching_product["price"])
+        running_total = running_total + matching_product["price"]
 
 
 
-# LOOK UP CORRESPONDING PRODUCTS
+    print("Total: " + str(to_usd(running_total)))
+    print(selected_ids)

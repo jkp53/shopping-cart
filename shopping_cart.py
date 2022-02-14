@@ -47,7 +47,7 @@ import datetime
 load_dotenv() #> invoking this function loads contents of the ".env" file into the script's environment...
 
 # ... where they can be accessed / read via the os module as usual:
-tax_rate = float(os.getenv("TAX_RATE"))
+tax_rate = float(os.getenv("TAX_RATE", default = 0.0875))
 store_name = os.getenv("STORE_NAME", default = "DELUCCHI'S MARKET")
 store_url = os.getenv("STORE_URL", default = "www.delucchismarket.com")
 

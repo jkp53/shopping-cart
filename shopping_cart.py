@@ -34,7 +34,6 @@ def to_usd(my_price):
     """
     return f"${my_price:,.2f}" #> $12,000.71
 
-print(products)
 # TODO: write some Python code here to produce the desired output
 
 #Grocery Store Name Customization

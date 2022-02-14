@@ -14,11 +14,24 @@ Install the dotenv package:
 ```sh
 pip install python-dotenv #note: NOT just "dotenv"
 ```
-Create a ".env" file in your working directory:
+Create a ".env" file and .gitignore file in your present working directory by running the following code:
 
 ```sh
-touch variables.env
+touch .env
+#my_file = ".env"
+#with open(my_file, "w") as file:
+#    file.write(STORE_NAME="JOHN'S GROCERY MARKET")
+
+#my_file = write()
+#STORE_URL="www.johnsgrocerymarket.com"
+#TAX_RATE=0.0875
+
+touch .gitignore
 ```
+
+TAX_RATE = .0875
+STORE_NAME="JOHN'S GROCERY MARKET"
+STORE_URL="www.johnsgrocerymarket.com"
 
 ## Usage (including store customization)
 

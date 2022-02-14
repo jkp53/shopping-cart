@@ -40,8 +40,14 @@ def to_usd(my_price):
 
 from math import prod
 import os
+from dotenv import load_dotenv
 import datetime
 
+
+load_dotenv() #> invoking this function loads contents of the ".env" file into the script's environment...
+
+# ... where they can be accessed / read via the os module as usual:
+tax_rate = float(os.getenv("TAX_RATE", default = .0875))
 store_name = os.getenv("STORE_NAME", default = "DELUCCHI'S MARKET")
 store_url = os.getenv("STORE_URL", default = "www.delucchismarket.com")
 
@@ -49,7 +55,6 @@ store_url = os.getenv("STORE_URL", default = "www.delucchismarket.com")
 running_total = 0
 selected_ids = [] #blank list to store the selected ids in
 matching_products = [] #blank list to store the information of any matching product that had been selected
-tax_rate = .0875
 
 #ASK FOR USER INPUT
 while True:

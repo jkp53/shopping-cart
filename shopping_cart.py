@@ -70,7 +70,7 @@ if __name__ == "__main__":
     now = datetime.datetime.now()
     print("CHECKOUT AT:", now.strftime("%Y-%m-%d %I:%M %p"))
     print("---------------------------------")
-    print("SELECTED PRODUCTS:")
+    print("PURCHASED PRODUCTS:")
 
     for selected_id in selected_ids:
         matching_products = [x for x in products if str(x["id"]) == str(selected_id)]
@@ -84,3 +84,5 @@ if __name__ == "__main__":
     print("TAX: " + str(to_usd(tax_amount)))
     final_total = running_total + tax_amount
     print("TOTAL: " + str(to_usd(final_total)))
+    print("---------------------------------")
+    print("THANKS, SEE YOU AGAIN SOON!")

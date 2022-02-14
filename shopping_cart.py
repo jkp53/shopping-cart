@@ -49,6 +49,7 @@ store_url = os.getenv("STORE_URL", default = "www.delucchismarket.com")
 running_total = 0
 selected_ids = [] #blank list to store the selected ids in
 matching_products = [] #blank list to store the information of any matching product that had been selected
+tax_rate = .0875
 
 #ASK FOR USER INPUT
 while True:
@@ -79,4 +80,7 @@ if __name__ == "__main__":
 
     print("---------------------------------")
     print("SUBTOTAL: " + str(to_usd(running_total)))
-    print(selected_ids)
+    tax_amount= running_total*tax_rate
+    print("TAX: " + str(to_usd(tax_amount)))
+    final_total = running_total + tax_amount
+    print("TOTAL: " + str(to_usd(final_total)))

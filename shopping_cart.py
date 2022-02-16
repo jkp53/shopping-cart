@@ -56,6 +56,7 @@ store_url = os.getenv("STORE_URL", default = "www.delucchismarket.com")
 running_total = 0
 selected_ids = [] #blank list to store the selected ids in
 matching_products = [] #blank list to store the information of any matching product that had been selected
+email_receipt_list_dict = []
 
 #ASK FOR USER INPUT
 while True:
@@ -69,6 +70,7 @@ while True:
         continue
     else:
         selected_ids.append(product_id)
+
 
 #DISPLAY OUTPUT
 
@@ -84,11 +86,15 @@ if __name__ == "__main__":
     print("---------------------------------")
     print("PURCHASED PRODUCTS:")
 
+
+
     for selected_id in selected_ids:
         matching_products = [x for x in products if str(x["id"]) == str(selected_id)]
         matching_product = matching_products[0]
         print(" ...", matching_product["name"], ("(" + str(to_usd(matching_product["price"])) + ")"))
         running_total = running_total + matching_product["price"]
+        receipt_dict = {'id':matching_product["id"],'name':matching_product["name"], 'price':str(to_usd(matching_product["price"]))}
+        email_receipt_list_dict.append(receipt_dict) #this saves the products selecvted in a list of dictionaries to later help produce the email receipt
 
     print("---------------------------------")
     print("SUBTOTAL: " + str(to_usd(running_total)))
@@ -122,18 +128,13 @@ while True:
 
             # this must match the test data structure
             template_data = {
+                "store_name" : store_name,
                 "subtotal_usd": str(to_usd(running_total)),
                 "tax_amount_usd": str(to_usd(tax_amount)),
                 "total_cost_usd": str(to_usd(final_total)),
                 "human_friendly_timestamp": str(checkout_time),
-                "products":[
-                    {"id":1, "name": "Product 1"},
-                    {"id":2, "name": "Product 2"},
-                    {"id":3, "name": "Product 3"},
-                    {"id":2, "name": "Product 2"},
-                    {"id":1, "name": "Product 1"}
-                ]
-            } # or construct this dictionary dynamically based on the results of some other process :-D
+                "products":email_receipt_list_dict
+            }
 
             client = SendGridAPIClient(SENDGRID_API_KEY)
             print("CLIENT:", type(client))

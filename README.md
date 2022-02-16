@@ -2,15 +2,6 @@
 Improve your grocery store's operations by using this code to automate receipts!
 
 ## Setup
-
-If using third party packages, create a virtual environment:
-```sh
-conda create -n shoppingcart-env python=3.8
-```
-Then activate that virtual environment:
-```sh
-conda activate shoppingcart-env
-```
 Install any necessary packages from the 'requirements.txt' file:
 ```sh
 pip install -r requirements.txt

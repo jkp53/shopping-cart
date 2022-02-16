@@ -38,6 +38,7 @@ def to_usd(my_price):
 
 #Grocery Store Name Customization
 
+import email
 from math import prod
 import os
 from dotenv import load_dotenv
@@ -96,3 +97,23 @@ if __name__ == "__main__":
     print("TOTAL: " + str(to_usd(final_total)))
     print("---------------------------------")
     print("THANKS, SEE YOU AGAIN SOON!")
+    print("---------------------------------")
+
+
+
+# ASKS IF CUSTOMER WANTS COPY OF RECEIPT SENT TO EMAIL, VALIDATES INPUT
+#this stores the valid choices in a list
+
+while True:
+    valid_choices = ['Y', 'N']
+    email_receipt = input("Would you like a copy of your receipt emailed to you? Please choose 'Y' for Yes or 'N' for No: ")
+
+    if email_receipt in valid_choices:
+        if email_receipt == 'Y':
+            email_address = input("Please enter your email: ")
+            break
+        if email_receipt == 'N':
+            break
+    else:
+        print("Oops incorrect entry. Please try again")
+        continue

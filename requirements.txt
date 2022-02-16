@@ -16,3 +16,6 @@
 # the python-dotenv package helps users set and
 #load environment variables to protect personal information
 python-dotenv
+
+#the sendgrid package enables users to
+sendgrid==6.6.0

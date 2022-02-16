@@ -79,7 +79,8 @@ if __name__ == "__main__":
     print(store_url)
     print("---------------------------------")
     now = datetime.datetime.now()
-    print("CHECKOUT AT:", now.strftime("%Y-%m-%d %I:%M %p"))
+    checkout_time = now.strftime("%Y-%m-%d %I:%M %p")
+    print("CHECKOUT AT:", checkout_time)
     print("---------------------------------")
     print("PURCHASED PRODUCTS:")
 
@@ -100,8 +101,7 @@ if __name__ == "__main__":
     print("---------------------------------")
 
 
-
-# ASKS IF CUSTOMER WANTS COPY OF RECEIPT SENT TO EMAIL, VALIDATES INPUT
+# ASKS IF CUSTOMER WANTS COPY OF RECEIPT SENT TO EMAIL, VALIDATES INPUT, AND SENDS EMAIl
 #this stores the valid choices in a list
 
 while True:
@@ -110,7 +110,49 @@ while True:
 
     if email_receipt in valid_choices:
         if email_receipt == 'Y':
-            email_address = input("Please enter your email: ")
+            customer_address = input("Please enter your email: ")
+            from sendgrid import SendGridAPIClient
+            from sendgrid.helpers.mail import Mail
+
+            load_dotenv()
+
+            SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY", default="OOPS, please set env var called 'SENDGRID_API_KEY'")
+            SENDGRID_TEMPLATE_ID = os.getenv("SENDGRID_TEMPLATE_ID", default="OOPS, please set env var called 'SENDGRID_TEMPLATE_ID'")
+            SENDER_ADDRESS = os.getenv("SENDER_ADDRESS", default="OOPS, please set env var called 'SENDER_ADDRESS'")
+
+            # this must match the test data structure
+            template_data = {
+                "subtotal_usd": str(to_usd(running_total)),
+                "tax_amount_usd": str(to_usd(tax_amount)),
+                "total_cost_usd": str(to_usd(final_total)),
+                "human_friendly_timestamp": str(checkout_time),
+                "products":[
+                    {"id":1, "name": "Product 1"},
+                    {"id":2, "name": "Product 2"},
+                    {"id":3, "name": "Product 3"},
+                    {"id":2, "name": "Product 2"},
+                    {"id":1, "name": "Product 1"}
+                ]
+            } # or construct this dictionary dynamically based on the results of some other process :-D
+
+            client = SendGridAPIClient(SENDGRID_API_KEY)
+            print("CLIENT:", type(client))
+
+            message = Mail(from_email=SENDER_ADDRESS, to_emails=customer_address)
+            message.template_id = SENDGRID_TEMPLATE_ID
+            message.dynamic_template_data = template_data
+            print("MESSAGE:", type(message))
+
+            try:
+                response = client.send(message)
+                print("RESPONSE:", type(response))
+                print(response.status_code)
+                print(response.body)
+                print(response.headers)
+
+            except Exception as err:
+                print(type(err))
+                print(err)
             break
         if email_receipt == 'N':
             break

@@ -1,11 +1,11 @@
+# ignores environment variables in the ".env" file:
+.env
+
 #prevents the products.csv file from being tracked by
 #version control since it will hold each user's custom
 #inventory of products
 data/products.csv
 !data/default_products.csv
-
-# ignore environment variables in the ".env" file:
-.env
 
 # ignore google credentials:
 # if you want to name your credentials "google-credentials.json":

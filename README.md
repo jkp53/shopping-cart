@@ -1,13 +1,11 @@
 # shopping-cart
 Improve your grocery store's operations by using this code to automate receipts!
 
-## Setup
+## Setup and Customization
 Install any necessary packages from the 'requirements.txt' file:
 ```sh
 pip install -r requirements.txt
 ```
-
-## Customization
 
 Navigate to your projects directory and create a '.env' file:
 ```sh
@@ -32,6 +30,9 @@ Similar to your .env file, find and open your '.gitignore' file. Copy the follow
 .env
 ```
 
+To customize your inventory of products, navigate to the data subdirectory within your directory. Create a copy of the 'default_products.csv' file can name it 'products.csv'.
+
+
 ## Setup Email Receipt Capability
 [Sign up for a SendGrid account](https://signup.sendgrid.com/), then follow the instructions to complete your "Single Sender Verification", clicking the link in a confirmation email to verify your account. You should also be able to access this via the settings menu:
 
@@ -50,7 +51,7 @@ Your '.env' file should now look something like the example below:
 TAX_RATE = 0.0875
 STORE_NAME="DELUCCHI'S MARKET"
 STORE_URL="www.delucchismarket.com"
-SENDGRID_API_KEY = "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"
+SENDGRID_API_KEY = "whatever your API Key is"
 SENDGRID_TEMPLATE_ID = "d-54e6165cdec4441383382d7455f327ea"
 SENDER_ADDRESS = "john.picker3@gmail.com"
 ```

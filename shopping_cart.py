@@ -8,10 +8,15 @@ load_dotenv() #> invoking this function loads contents of the ".env" file into t
 
 #THIS READS YOUR CUSTOM INVENTORY FROM THE 'PRODUCTS' CSV FILE AND CONVERTS
 #IT TO A LIST OF DICTIONARIES TO BE USED FOR MAPPING IN THE CODE
+#I've also added validation to ensure the user makes the copy of the default_products file so they can have their own custom inventory
 from pandas import read_csv
-csv_filepath = os.path.join(os.path.dirname(__file__), "data", "products.csv")
-x = read_csv(csv_filepath)
-products = x.to_dict("records")
+try:
+    csv_filepath = os.path.join(os.path.dirname(__file__), "data", "products.csv")
+    x = read_csv(csv_filepath)
+    products = x.to_dict("records")
+except:
+    print("Please ensure you have made a copy of the 'default_products' file in your 'data' subdirectory and rename it 'products' before continuing")
+    quit()
 
 def to_usd(my_price):
     """

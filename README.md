@@ -30,7 +30,7 @@ Similar to your .env file, find and open your '.gitignore' file. Copy the follow
 .env
 ```
 
-To customize your inventory of products, navigate to the data subdirectory within your directory. Create a copy of the 'default_products.csv' file can name it 'products.csv'.
+To customize your inventory of products, navigate to the 'data' subdirectory/folder within your directory. Create a copy of the 'default_products.csv' file and name it 'products.csv'. You can now open and edit any of the fields to customize your inventory, including adding new products!
 
 
 ## Setup Email Receipt Capability
@@ -43,7 +43,7 @@ Then [create a SendGrid API Key](https://app.sendgrid.com/settings/api_keys) wit
 
 Also set an environment variable called `SENDER_ADDRESS` to be the same email address as the single sender address you just associated with your SendGrid account.
 
-Navigate to https://sendgrid.com/dynamic_templates and press the "Create Template" button on the top right. Give it a name like "example-receipt", and click "Save". At this time, you should see your template's unique identifier (e.g. "d-b902ae61c68f40dbbd1103187a9736f0"). Copy this value and store it in an environment variable called `SENDGRID_TEMPLATE_ID`.
+Navigate to https://sendgrid.com/dynamic_templates and press the "Create Template" button on the top right. Give it a name like "example-receipt", and click "Save". At this time, you should see your template's unique identifier (e.g. "d-54e6165cdec4441383382d7455f327ea"). Copy this value and store it in an environment variable called `SENDGRID_TEMPLATE_ID`.
 
 Your '.env' file should now look something like the example below:
 

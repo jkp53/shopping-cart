@@ -125,9 +125,9 @@ Visit the [Google Developer Console](https://console.developers.google.com/cloud
 From either API page, or from the [API Credentials](https://console.developers.google.com/apis/credentials) page, follow a process to create and download credentials to use the APIs:
   1. Click "Create Credentials" for a "Service Account". Follow the prompt to create a new service account named something like "spreadsheet-service", and add a role of "Editor".
   2. Click on the newly created service account from the "Service Accounts" section, and click "Add Key" to create a new "JSON" credentials file for that service account. Download the resulting .json file (this might happen automatically).
-  3. Move a copy of the credentials file into your project repository, typically into the root directory or perhaps a directory called "auth", and note its filepath. For the example below, we'll refer to a file called "google-credentials.json" in an "auth" directory (i.e. "auth/google-credentials.json").
+  3. Rename the file "google-credentials.json". Then move a copy of the credentials file into your project repository, into a subdirectory called "auth". Note its filepath; it should look something like "auth/google-credentials.json".
 
-Finally, before committing, add the credentials filepath to your repository's ".gitignore" file to ensure it does not get tracked in version control or uploaded to GitHub:
+Finally, before committing, add the credentials filepath to your repository's '.gitignore' file to ensure it does not get tracked in version control or uploaded to GitHub:
 
 ```sh
 auth/google-credentials.json

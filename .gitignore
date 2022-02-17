@@ -6,3 +6,11 @@ data/products.csv
 
 # ignore environment variables in the ".env" file:
 .env
+
+# ignore google credentials:
+# if you want to name your credentials "google-credentials.json":
+google-credentials.json
+# ignore the google api credentials file at the following location:
+auth/google-credentials.json
+# otherwise use this catch-all to ignore all JSON files:
+*.json

@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 import datetime
 
-# this enables us to pull the inventory from a google sheet
+# The following code enables us to pull the inventory from a google sheet
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
@@ -43,44 +43,7 @@ print("DOC:", type(doc), doc.title) #> <class 'gspread.models.Spreadsheet'>
 sheet = doc.worksheet(SHEET_NAME)
 print("SHEET:", type(sheet), sheet.title)#> <class 'gspread.models.Worksheet'>
 
-rows = sheet.get_all_records()
-print("ROWS:", type(rows)) #> <class 'list'>
-
-for row in rows:
-    print(row) #> <class 'dict'>
-
-#
-# WRITE VALUES TO SHEET
-#
-# see: https://gspread.readthedocs.io/en/latest/api.html#gspread.models.Worksheet.insert_row
-
-print("-----------------")
-print("NEW ROW...")
-
-auto_incremented_id = len(rows) + 1 # TODO: should change this to be one greater than the current maximum id value
-new_row = {
-    "id": auto_incremented_id,
-    "name": f"Product {auto_incremented_id} (created from my python app)",
-    "department": "snacks",
-    "price": 4.99,
-    "availability_date": "2021-02-17"
-}
-print(new_row)
-
-print("-----------------")
-print("WRITING VALUES TO DOCUMENT...")
-
-# the sheet's insert_row() method wants our data to be in this format (see docs):
-new_values = list(new_row.values()) #> [13, 'Product 13', 'snacks', 4.99, '2019-01-01']
-
-# the sheet's insert_row() method wants us to pass the row number where this will be inserted (see docs):
-next_row_number = len(rows) + 2 # number of records, plus a header row, plus one
-
-response = sheet.insert_row(new_values, next_row_number)
-
-print("RESPONSE:", type(response)) #> dict
-print(response) #> {'spreadsheetId': '____', 'updatedRange': "'Products-2021'!A9:E9", 'updatedRows': 1, 'updatedColumns': 5, 'updatedCells': 5}
-
+products = sheet.get_all_records()
 
 def to_usd(my_price):
     """

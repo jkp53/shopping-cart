@@ -21,4 +21,4 @@ python-dotenv
 sendgrid==6.6.0
 
 #The gspread package provides an interface to Google Sheet documents via the Google Sheets and Google Drive APIs.
-gspread oauth2client
+gspread #oauth2client

@@ -1,3 +1,12 @@
+#prevents the products.csv file from being tracked by
+#version control since it will hold each user's custom
+#inventory of products
+data/products.csv
+!data/default_products.csv
+
+# ignore environment variables in the ".env" file:
+.env
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -102,8 +111,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-# ignore environment variables in the ".env" file:
-.env
+
 .venv
 env/
 venv/

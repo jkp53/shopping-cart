@@ -127,7 +127,7 @@ From either API page, or from the [API Credentials](https://console.developers.g
   2. Click on the newly created service account from the "Service Accounts" section, and click "Add Key" to create a new "JSON" credentials file for that service account. Download the resulting .json file (this might happen automatically).
   3. Rename the file "google-credentials.json". Then move a copy of the credentials file into your project repository, into a subdirectory called "auth". Note its filepath; it should look something like "auth/google-credentials.json".
 
-Finally, before committing, add the credentials filepath to your repository's '.gitignore' file to ensure it does not get tracked in version control or uploaded to GitHub:
+Add the credentials filepath to your repository's '.gitignore' file to ensure it does not get tracked in version control or uploaded to GitHub:
 
 ```sh
 auth/google-credentials.json
